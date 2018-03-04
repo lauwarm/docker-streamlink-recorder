@@ -25,6 +25,6 @@ $ docker run -v /home/:/download -e streamLink='twitch.tv/twitch' -e streamQuali
 
 `streamName` - name for the stream.
 
-`streamOptions` - streamlink flags (--twitch-disable-hosting, seperated by space)
+`streamOptions` - streamlink flags (--twitch-disable-hosting, separated by space)
 
 The File will be saved as `streamName-YearMonthDayHourMinuteSecond.mkv`
