@@ -2,7 +2,7 @@
 Automated Dockerfile to record livestreams with streamlink
 
 ## Description
-This is a Docker Container to record a livestream. It uses [Python 3] (https://www.python.org/) [Alpine] (https://alpinelinux.org/) , installs [streamlink] (https://github.com/streamlink/streamlink) and adds a [Python Script] (https://gist.githubusercontent.com/lauwarm/5cae7bd36e4f3079a420618c9585e644/raw/09cbea428021d15bcec4a06e0dc8c54a5f61ef87/streamlink-recorder.py) to periodically check if the stream is live.
+This is a Docker Container to record a livestream. It uses the official [Python Image](https://hub.docker.com/_/python) with the Tag *buster*  , installs [streamlink](https://github.com/streamlink/streamlink) and uses the Script [streamlink-recorder.sh](https://raw.githubusercontent.com/lauwarm/docker-streamlink-recorder/python3.8.1_buster_1.3.1/streamlink-recorder.sh) to periodically check if the stream is live.
 
 ## Usage
 To run the Container:
