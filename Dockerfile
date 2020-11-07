@@ -1,7 +1,7 @@
-FROM python:3.8.1-buster
-MAINTAINER lauwarm <lauwarm@mailbox.org>
+FROM python:3.9.0-buster
+LABEL maintainer="lauwarm@mailbox.org"
 
-ENV streamlinkVersion=1.3.1
+ENV streamlinkVersion=1.7.0
 
 ADD https://github.com/streamlink/streamlink/releases/download/${streamlinkVersion}/streamlink-${streamlinkVersion}.tar.gz /opt/
 ADD https://raw.githubusercontent.com/back-to/streamlink/277d064051e9166f61df315ae04cc71011a61e98/src/streamlink/plugins/chaturbate.py /home/plugins/
