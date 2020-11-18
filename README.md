@@ -7,17 +7,17 @@ This is a Docker Container to record a livestream. It uses the official [Python 
 ## Usage
 To run the Container:
 ```bash
-$ docker run -v /path/to/vod/folder/:/download -e streamLink='' -e streamQuality='' -e streamName='' -e streamOptions='' lauwarm/streamlink-recorder
+$ docker run -v /path/to/vod/folder/:/home/download -e streamLink='' -e streamQuality='' -e streamName='' -e streamOptions='' lauwarm/streamlink-recorder
 ```
 
 Example:
 ```bash
-$ docker run -v /home/:/download -e streamLink='twitch.tv/twitch' -e streamQuality='best' -e streamName='twitch' -e streamOptions='--twitch-disable-hosting --twitch-oauth-token=XXXX' lauwarm/streamlink-recorder
+$ docker run -v /home/:/home/download -e streamLink='twitch.tv/twitch' -e streamQuality='best' -e streamName='twitch' -e streamOptions='--twitch-disable-hosting' lauwarm/streamlink-recorder
 ```
 
 ## Notes
 
-`/download` - the place where the vods will be saved. Mount it to a desired place with `-v` option.
+`/home/download` - the place where the vods will be saved. Mount it to a desired place with `-v` option.
 
 `streamLink` - the url of the stream you want to record.
 
