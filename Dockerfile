@@ -12,6 +12,7 @@ RUN tar -xzf /opt/streamlink-${streamlinkVersion}.tar.gz -C /opt/ && \
 	python setup.py install
 
 RUN mkdir /home/download
-COPY ./streamlink-recorder.sh /home/
+RUN mkdir /home/script
+COPY ./streamlink-recorder.sh /home/script/
 
-CMD /bin/sh ./home/streamlink-recorder.sh ${streamOptions} ${streamLink} ${streamQuality} ${streamName}
+CMD /bin/sh ./home/script/streamlink-recorder.sh ${streamOptions} ${streamLink} ${streamQuality} ${streamName}
