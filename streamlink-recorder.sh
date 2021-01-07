@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/sh
 
 # For more information visit: https://github.com/downthecrop/TwitchVOD
 
