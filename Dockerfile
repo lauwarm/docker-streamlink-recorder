@@ -19,6 +19,8 @@ RUN mkdir /home/script
 COPY ./streamlink-recorder.sh /home/script/
 COPY ./entrypoint.sh /home/script
 
+RUN ["chmod", "+x", "/home/script/entrypoint.sh"]
+
 ENTRYPOINT [ "/home/script/entrypoint.sh" ]
 
 # replace with gosu???
