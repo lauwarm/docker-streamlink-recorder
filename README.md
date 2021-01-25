@@ -7,12 +7,12 @@ This is a Docker Container to record a livestream. It uses the official [Python 
 ## Usage
 To run the Container:
 ```bash
-$ docker run -v /path/to/vod/folder/:/home/download -e streamLink='' -e streamQuality='' -e streamName='' -e streamOptions='' -e uid='' -e gid='' lauwarm/streamlink-recorder
+$ docker run -v /path/to/vod/folder/:/home/download -e streamLink='' -e streamQuality='' -e streamName='' -e streamOptions='' -e uid='' -e gid='' lauwarm/streamlink-recorder:python3.9.0_buster_1.7
 ```
 
 Example:
 ```bash
-$ docker run -v /home/:/home/download -e streamLink='twitch.tv/twitch' -e streamQuality='best' -e streamName='twitch' -e streamOptions='--twitch-disable-hosting' -e uid='1001' -e gid='1001' lauwarm/streamlink-recorder
+$ docker run -v /home/:/home/download -e streamLink='twitch.tv/twitch' -e streamQuality='best' -e streamName='twitch' -e streamOptions='--twitch-disable-hosting' -e uid='1001' -e gid='1001' lauwarm/streamlink-recorder:python3.9.0_buster_1.7
 ```
 
 ## Notes
