@@ -35,4 +35,4 @@ $ docker run -v /home/:/home/download -e streamLink='twitch.tv/twitch' -e stream
 
 `gid` - GROUP ID, map to your desired Group ID (fallback to 9001)
 
-The File will be saved as `streamName-YearMonthDayHourMinuteSecond.mkv`
+The File will be saved as `streamName-YearMonthDay-HourMinuteSecond.mkv`
