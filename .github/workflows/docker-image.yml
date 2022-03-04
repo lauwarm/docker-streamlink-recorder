@@ -11,15 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Dynamically set MY_DATE environment variable
-      run: echo "MY_DATE=$(date +%s)" >> $GITHUB_ENV
-    - name: Test MY_DATE variable
-      run: echo ${{ env.MY_DATE }}
-
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
 
+    - name: Dynamically set MY_DATE environment variable
+      run: echo "DATE=$(date +%s)" >> $GITHUB_ENV
+    - name: Test DATE variable
+      run: echo ${{ env.DATE }}
 
     - name: Docker login
       run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
