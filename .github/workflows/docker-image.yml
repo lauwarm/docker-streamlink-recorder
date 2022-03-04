@@ -23,4 +23,4 @@ jobs:
       run: docker build . --file Dockerfile --tag adriel/streamlink-autodl:$(date +%s)
 
     - name: Docker Push
-      run: docker push adriel/streamlink-autodl:$(date +%s)
+      run: docker push --all-tags adriel/streamlink-autodl
