@@ -29,12 +29,10 @@ jobs:
       run: docker build . --file Dockerfile --tag adriel/streamlink-autodl
 
     - name: Look up images
-      run: docker image ls
-    - name: Look up images2
       run: docker images
 
     - name: Docker Push
-      run: docker push streamlink-autodl
+      run: docker push adriel/streamlink-autodl
 
 
       # - name: Login to DockerHub Registry
