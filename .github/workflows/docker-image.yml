@@ -31,8 +31,11 @@ jobs:
     - name: Look up images
       run: docker images
 
+    - name: Check for login file
+      run: cat '/home/runner/.docker/config.json'
+
     - name: Docker Push
-      run: docker push adriel/streamlink-autodl
+      run: docker --config '/home/runner/.docker/config.json' push adriel/streamlink-autodl
 
 
       # - name: Login to DockerHub Registry
