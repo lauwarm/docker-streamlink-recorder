@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set DATE var
-        run: echo "DATE=$(date)" >> $GITHUB_ENV
+        run: echo "DATE=$(date '+%Y/%m/%d %H.%M.%S')" >> $GITHUB_ENV
       - name: Test DATE variable
         run: echo ${{ env.DATE }}
 
