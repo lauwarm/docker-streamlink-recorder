@@ -21,7 +21,9 @@ jobs:
       run: echo ${{ env.DATE }}
 
     - name: Docker login
-      run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" docker.io
+      run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" https://index.docker.io/v1
+    - name: Docker info
+      run: docker info
 
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag adriel/streamlink-autodl
@@ -33,3 +35,27 @@ jobs:
 
     - name: Docker Push
       run: docker push streamlink-autodl
+
+
+      # - name: Login to DockerHub Registry
+      #   run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login docker.pkg.github.com -u "${{ secrets.DOCKER_USER }}" --password-stdin
+      # - name: Login to Docker Hub
+      #   uses: docker/login-action@v1
+      #   with:
+      #     username: ${{ secrets.DOCKER_USER }}
+      #     password: ${{ secrets.DOCKER_PASSWORD }}
+      # - name: docker build images
+      #   run: |
+      #     # build images from dockerfile
+      #     docker image build -t _YOUR_IMAGE_NAME_ -f ./_pathToDockerFile_/Dockerfile .
+      # - name: docker tag images
+      #   run: |
+      #    # tag image before pushing
+      #    docker tag _YOUR_IMAGE_NAME_ docker.io/_YOUR_DOCKER_HUB_USERNAME_/_YOUR_IMAGE_NAME_
+      # - name: docker push tagged images
+      #   run: |
+      #    #re-login before pushing just in case
+      #    echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
+      #    echo ${{ secrets.DOCKER_PASSWORD }} | docker login docker.io -u ${{ secrets.DOCKER_USER }} --password-stdin
+      #    # push images tagged
+      #    docker push docker.io/_YOUR_DOCKER_HUB_USERNAME_/_YOUR_IMAGE_NAME_
