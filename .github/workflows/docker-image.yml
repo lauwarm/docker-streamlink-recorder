@@ -15,9 +15,13 @@ jobs:
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        DATE: $(date +%s)
 
-    - name: docker login
+    - name: Set current date as env variable
+      run: echo "NOW::$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+    - name: Echo current date
+      run: echo $NOW
+
+    - name: Docker login
       run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
 
     - name: Build the Docker image
