@@ -27,7 +27,7 @@ jobs:
       run: docker info
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag adriel/streamlink-autodl
+      run: docker build -t adriel/streamlink-autodl:1.0
 
     - name: Look up images
       run: docker images
@@ -36,8 +36,9 @@ jobs:
       run: cat '/home/runner/.docker/config.json'
 
     - name: Docker Push
-      run: docker --debug --log-level debug --config '/home/runner/.docker/' push adriel/streamlink-autodl
+      run: docker --debug --log-level debug --config '/home/runner/.docker/' push adriel/streamlink-autodl:1.0
 
+           # sudo docker build -t your_username/demorepo:1.0
 
 
       # - name: Login to DockerHub Registry
