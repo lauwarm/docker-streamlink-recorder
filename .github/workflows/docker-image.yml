@@ -39,6 +39,7 @@ jobs:
       run: docker --config '/home/runner/.docker/' push adriel/streamlink-autodl
 
 
+
       # - name: Login to DockerHub Registry
       #   run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login docker.pkg.github.com -u "${{ secrets.DOCKER_USER }}" --password-stdin
       # - name: Login to Docker Hub
