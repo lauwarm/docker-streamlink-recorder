@@ -20,7 +20,7 @@ jobs:
       run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag adriel/streamlink-autodl:$(date +%s)
+      run: docker build . --file Dockerfile --tag streamlink-autodl:$(date +%s)
 
     - name: Docker Push
       run: docker push adriel/streamlink-autodl
