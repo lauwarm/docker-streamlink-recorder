@@ -32,4 +32,4 @@ jobs:
       run: docker images
 
     - name: Docker Push
-      run: docker push adriel/streamlink-autodl
+      run: docker push streamlink-autodl
