@@ -1,66 +1,104 @@
-name: Docker Image CI
+name: Publish Docker image
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  release:
+    types: [published]
 
 jobs:
-  build:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      env:
-        DOCKER_USER: ${{secrets.DOCKER_USER}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      - name: Check out the repo
+        uses: actions/checkout@v2
 
-    - name: Dynamically set MY_DATE environment variable
-      run: echo "DATE=$(date +%s)" >> $GITHUB_ENV
-    - name: Test DATE variable
-      run: echo ${{ env.DATE }}
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Docker login
-      # run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" https://index.docker.io/v1
-      run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
-    - name: Docker info
-      run: docker info
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          # images: my-docker-hub-namespace/my-docker-hub-repository
+          images: adriel/streamlink-autodl
 
-    - name: Build the Docker image
-      # run: docker build . --file Dockerfile -t adriel/streamlink-autodl:latest -t adriel/streamlink-autodl:1.0
-      run: docker build . --file Dockerfile -t adriel/streamlink-autodl:1.0
-
-    - name: Look up images
-      run: docker images
-
-    - name: Check for login file
-      run: cat '/home/runner/.docker/config.json'
-
-    - name: Docker Push
-      run: docker --debug --log-level debug --config '/home/runner/.docker/' push adriel/streamlink-autodl:1.0
-
-           # sudo docker build -t your_username/demorepo:1.0
+      - name: Build and push Docker image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
 
-      # - name: Login to DockerHub Registry
-      #   run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login docker.pkg.github.com -u "${{ secrets.DOCKER_USER }}" --password-stdin
-      # - name: Login to Docker Hub
-      #   uses: docker/login-action@v1
-      #   with:
-      #     username: ${{ secrets.DOCKER_USER }}
-      #     password: ${{ secrets.DOCKER_PASSWORD }}
-      # - name: docker build images
-      #   run: |
-      #     # build images from dockerfile
-      #     docker image build -t _YOUR_IMAGE_NAME_ -f ./_pathToDockerFile_/Dockerfile .
-      # - name: docker tag images
-      #   run: |
-      #    # tag image before pushing
-      #    docker tag _YOUR_IMAGE_NAME_ docker.io/_YOUR_DOCKER_HUB_USERNAME_/_YOUR_IMAGE_NAME_
-      # - name: docker push tagged images
-      #   run: |
-      #    #re-login before pushing just in case
-      #    echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
-      #    echo ${{ secrets.DOCKER_PASSWORD }} | docker login docker.io -u ${{ secrets.DOCKER_USER }} --password-stdin
-      #    # push images tagged
-      #    docker push docker.io/_YOUR_DOCKER_HUB_USERNAME_/_YOUR_IMAGE_NAME_
+
+
+# name: Docker Image CI
+#
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
+#
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+#       env:
+#         DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
+#         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+#
+#     - name: Dynamically set MY_DATE environment variable
+#       run: echo "DATE=$(date +%s)" >> $GITHUB_ENV
+#     - name: Test DATE variable
+#       run: echo ${{ env.DATE }}
+#
+#     - name: Docker login
+#       # run: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" https://index.docker.io/v1
+#       run: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+#     - name: Docker info
+#       run: docker info
+#
+#     - name: Build the Docker image
+#       # run: docker build . --file Dockerfile -t adriel/streamlink-autodl:latest -t adriel/streamlink-autodl:1.0
+#       run: docker build . --file Dockerfile -t adriel/streamlink-autodl:1.0
+#
+#     - name: Look up images
+#       run: docker images
+#
+#     - name: Check for login file
+#       run: cat '/home/runner/.docker/config.json'
+#
+#     - name: Docker Push
+#       run: docker --debug --log-level debug --config '/home/runner/.docker/' push adriel/streamlink-autodl:1.0
+#
+#            # sudo docker build -t your_username/demorepo:1.0
+#
+#
+#       # - name: Login to DockerHub Registry
+#       #   run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login docker.pkg.github.com -u "${{ secrets.DOCKER_USER }}" --password-stdin
+#       # - name: Login to Docker Hub
+#       #   uses: docker/login-action@v1
+#       #   with:
+#       #     username: ${{ secrets.DOCKER_USERNAME }}
+#       #     password: ${{ secrets.DOCKER_PASSWORD }}
+#       # - name: docker build images
+#       #   run: |
+#       #     # build images from dockerfile
+#       #     docker image build -t _YOUR_IMAGE_NAME_ -f ./_pathToDockerFile_/Dockerfile .
+#       # - name: docker tag images
+#       #   run: |
+#       #    # tag image before pushing
+#       #    docker tag _YOUR_IMAGE_NAME_ docker.io/_YOUR_DOCKER_HUB_USERNAME_/_YOUR_IMAGE_NAME_
+#       # - name: docker push tagged images
+#       #   run: |
+#       #    #re-login before pushing just in case
+#       #    echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
+#       #    echo ${{ secrets.DOCKER_PASSWORD }} | docker login docker.io -u ${{ secrets.DOCKER_USER }} --password-stdin
+#       #    # push images tagged
+#       #    docker push docker.io/_YOUR_DOCKER_HUB_USERNAME_/_YOUR_IMAGE_NAME_
