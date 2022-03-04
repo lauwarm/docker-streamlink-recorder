@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set current date as env variable
-      run: echo "NOW::$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
-    - name: Echo current date
-      run: echo $NOW
+    - name: Dynamically set MY_DATE environment variable
+      run: echo "MY_DATE=2020-10-07T12:00:00+01:00" >> $GITHUB_ENV
+    - name: Test MY_DATE variable
+      run: echo ${{ env.MY_DATE }}
 
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
