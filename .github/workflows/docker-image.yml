@@ -14,6 +14,8 @@ jobs:
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        ACTIONS_RUNNER_DEBUG: true
+        ACTIONS_STEP_DEBUG: true
 
     - name: Dynamically set MY_DATE environment variable
       run: echo "DATE=$(date +%s)" >> $GITHUB_ENV
