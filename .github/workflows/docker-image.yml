@@ -40,7 +40,10 @@ jobs:
           context: .
           push: true
           # tags: latest,${{ env.DATE }}, ${{ steps.meta.outputs.tags }}
-          tags: [${{ steps.meta.outputs.tags }}, ${{ env.DATE }}, 'latest']
+          tags:
+            - ${{ steps.meta.outputs.tags }}
+            - ${{ env.DATE }}
+            - 'latest'
           labels: ${{ steps.meta.outputs.labels }}
 
 
