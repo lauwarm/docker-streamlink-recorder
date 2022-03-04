@@ -27,7 +27,8 @@ jobs:
       run: docker info
 
     - name: Build the Docker image
-      run: docker build --file Dockerfile -t adriel/streamlink-autodl:1.0
+      # run: docker build . --file Dockerfile -t adriel/streamlink-autodl:latest -t adriel/streamlink-autodl:1.0
+      run: docker build . --file Dockerfile -t adriel/streamlink-autodl:1.0
 
     - name: Look up images
       run: docker images
