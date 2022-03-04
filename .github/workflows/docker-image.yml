@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Dynamically set MY_DATE environment variable
-      run: echo "MY_DATE=2020-10-07T12:00:00+01:00" >> $GITHUB_ENV
+      run: echo "MY_DATE=$(+%s)" >> $GITHUB_ENV
     - name: Test MY_DATE variable
       run: echo ${{ env.MY_DATE }}
 
