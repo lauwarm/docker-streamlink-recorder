@@ -21,13 +21,14 @@ jobs:
       run: echo ${{ env.DATE }}
 
     - name: Docker login
-      run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+      run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" docker.io
 
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag adriel/streamlink-autodl
 
     - name: Look up images
       run: docker image ls
+      run: docker images
 
     - name: Docker Push
       run: docker push adriel/streamlink-autodl
