@@ -36,7 +36,7 @@ jobs:
       run: cat '/home/runner/.docker/config.json'
 
     - name: Docker Push
-      run: docker --config '/home/runner/.docker/' push adriel/streamlink-autodl
+      run: docker --debug --config '/home/runner/.docker/' push adriel/streamlink-autodl
 
 
 
