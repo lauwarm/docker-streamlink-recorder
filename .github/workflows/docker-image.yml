@@ -28,6 +28,7 @@ jobs:
 
     - name: Look up images
       run: docker image ls
+    - name: Look up images2
       run: docker images
 
     - name: Docker Push
