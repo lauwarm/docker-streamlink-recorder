@@ -21,7 +21,8 @@ jobs:
       run: echo ${{ env.DATE }}
 
     - name: Docker login
-      run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" https://index.docker.io/v1
+      # run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" https://index.docker.io/v1
+      run: docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
     - name: Docker info
       run: docker info
 
@@ -32,7 +33,7 @@ jobs:
       run: docker images
 
     - name: Check for login file
-      run: cat '/home/runner/.docker/config.json'
+      run: cat '/home/runner/.docker/'
 
     - name: Docker Push
       run: docker --config '/home/runner/.docker/config.json' push adriel/streamlink-autodl
