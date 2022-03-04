@@ -41,7 +41,8 @@ jobs:
             # - 'latest'
           tags: |
             ${{ steps.meta.outputs.tags }}
-            adriel/streamlink-autodl:latest
+            ${{ secrets.DOCKER_USERNAME }}/streamlink-autodl:latest
+            ${{ secrets.DOCKER_USERNAME }}/streamlink-autodl:${{ env.DATE }}
           labels: ${{ steps.meta.outputs.labels }}
 
 
