@@ -33,7 +33,6 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ steps.meta.outputs.tags }}
             ${{ secrets.DOCKER_USERNAME }}/streamlink-autodl:latest
             "${{ secrets.DOCKER_USERNAME }}/streamlink-autodl:${{ env.DATE }}"
           labels: ${{ steps.meta.outputs.labels }}
