@@ -21,6 +21,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3.6.2
+        with:
+          images: ${{ secrets.DOCKER_USERNAME }}/streamlink-autodl
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v2.9.0
         with:
@@ -29,12 +35,5 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/streamlink-autodl:latest
             "${{ secrets.DOCKER_USERNAME }}/streamlink-autodl:${{ env.DATE }}"
-      - name: Get name test
-        id: get-build-name
-        run: imageName=${{ steps.docker-build.outputs.metadata }}
-             echo $imageName
-
-      # - name: Dynamically set MY_DATE environment variable
-      #   run: echo "DATE=$(date +%s)" >> $GITHUB_ENV
-      # - name: Test DATE variable
-      #   run: echo ${{ env.DATE }}
+      - name: Get name test1
+        run: echo steps.docker-build
