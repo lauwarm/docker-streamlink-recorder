@@ -1,7 +1,7 @@
 FROM python:3.9.10-buster
-LABEL maintainer="lauwarm@mailbox.org"
+LABEL maintainer="Adriel"
 
-ENV streamlinkVersion=3.1.1
+ENV streamlinkVersion=3.2.0
 
 ADD https://github.com/streamlink/streamlink/releases/download/${streamlinkVersion}/streamlink-${streamlinkVersion}.tar.gz /opt/
 
