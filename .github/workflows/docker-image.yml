@@ -36,4 +36,4 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/streamlink-autodl:latest
             "${{ secrets.DOCKER_USERNAME }}/streamlink-autodl:${{ env.DATE }}"
       - name: Get name test1
-        run: echo steps.docker-build
+        run: echo steps
