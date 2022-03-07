@@ -28,6 +28,7 @@ jobs:
           images: ${{ secrets.DOCKER_USERNAME }}/streamlink-autodl
 
       - name: Build and push Docker image
+        id: docker_build
         uses: docker/build-push-action@v2.9.0
         with:
           context: .
@@ -35,5 +36,8 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/streamlink-autodl:latest
             "${{ secrets.DOCKER_USERNAME }}/streamlink-autodl:${{ env.DATE }}"
+      - name: Echo digest
+        run: |
+          echo ${{ steps.docker_build.outputs.digest }}
       - name: Get name test1
-        run: echo steps
+        run: echo $steps
