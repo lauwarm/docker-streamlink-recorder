@@ -31,8 +31,8 @@ jobs:
             "${{ secrets.DOCKER_USERNAME }}/streamlink-autodl:${{ env.DATE }}"
       - name: Get name test
         id: get-build-name
-        run: imageName=${{ fromJSON(steps.docker-build.outputs.metadata)['image.name'] }}
-             echo "::set-output name=image_name::$imageName"
+        run: imageName=${{ steps.docker-build.outputs.metadata }}
+             echo $imageName
 
       # - name: Dynamically set MY_DATE environment variable
       #   run: echo "DATE=$(date +%s)" >> $GITHUB_ENV
