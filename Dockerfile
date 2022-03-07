@@ -3,13 +3,13 @@ LABEL maintainer="Adriel"
 
 ENV streamlinkVersion=3.2.0
 
-ADD https://github.com/streamlink/streamlink/releases/download/${streamlinkVersion}/streamlink-${streamlinkVersion}.tar.gz /opt/
+ADD "https://github.com/streamlink/streamlink/releases/download/${streamlinkVersion}/streamlink-${streamlinkVersion}.tar.gz" /opt/
 
 RUN apt-get update && apt-get install gosu
 
-RUN tar -xzf /opt/streamlink-${streamlinkVersion}.tar.gz -C /opt/ && \
-	rm /opt/streamlink-${streamlinkVersion}.tar.gz && \
-	cd /opt/streamlink-${streamlinkVersion}/ && \
+RUN tar -xzf "/opt/streamlink-${streamlinkVersion}.tar.gz" -C /opt/ && \
+	rm "/opt/streamlink-${streamlinkVersion}.tar.gz" && \
+	cd "/opt/streamlink-${streamlinkVersion}/" && \
 	python setup.py install
 
 RUN mkdir /home/download
@@ -23,4 +23,4 @@ RUN ["chmod", "+x", "/home/script/entrypoint.sh"]
 
 ENTRYPOINT [ "/home/script/entrypoint.sh" ]
 
-CMD /bin/bash /home/script/streamlink-recorder.sh ${streamOptions} ${streamLink} ${streamQuality}
+CMD /bin/bash /home/script/streamlink-recorder.sh $streamOptions "$streamLink" "$streamQuality"
