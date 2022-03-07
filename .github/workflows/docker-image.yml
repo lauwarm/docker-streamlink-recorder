@@ -29,7 +29,8 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/streamlink-autodl:latest
             "${{ secrets.DOCKER_USERNAME }}/streamlink-autodl:${{ env.DATE }}"
-      - id: get-build-name
-          run: |
+      - name: Get name test
+        id: get-build-name
+        run: |
               imageName=${{ fromJSON(steps.docker-build.outputs.metadata)['image.name'] }}
               echo "::set-output name=image_name::$imageName"
