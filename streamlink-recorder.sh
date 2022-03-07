@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 while [[ true ]]; do
-	Date=$(date +%Y-%m-%d_%H.%M.%S)
-	streamlink "$streamOptions" "$streamLink" "$streamQuality" -o "/home/download/${streamName}-${Date}".mkv
+  streamlink --output "/home/download/{author}/{game}/time:%Y-%m-%d_%H.%M.%S} {title}.mkv" "$streamOptions" "$streamLink" "$streamQuality"
 	sleep 60s
 done
