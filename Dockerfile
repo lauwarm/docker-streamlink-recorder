@@ -23,4 +23,4 @@ RUN ["chmod", "+x", "/home/script/entrypoint.sh"]
 
 ENTRYPOINT [ "/home/script/entrypoint.sh" ]
 
-CMD /bin/bash /home/script/streamlink-recorder.sh $streamOptions "$streamLink" "$streamQuality"
+CMD /bin/bash /home/script/streamlink-recorder.sh "$streamOptions" "$streamLink" "$streamQuality" "$streamName"
