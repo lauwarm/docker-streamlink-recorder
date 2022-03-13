@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+echo "Saving config file."
 twitch configure --client-id "$clientID" --client-secret "$clientSecret"
 
 while [[ true ]]; do
@@ -11,7 +12,6 @@ while [[ true ]]; do
     twitch token
   fi
 
-  echo "$streamName stream isn't live: $stream_status"
   if [[ "$stream_status" == "live" ]]; then
     echo "$streamName stream is: $stream_status"
     streamlink \
@@ -19,6 +19,8 @@ while [[ true ]]; do
       $streamOptions \
       "$streamLink" \
       "$streamQuality"
+  else
+    echo "$streamName stream isn't live: $stream_status"
   fi
 	sleep 60s
 done

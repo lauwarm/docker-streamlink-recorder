@@ -6,7 +6,7 @@ ENV twitchVersion=1.1.5
 
 # Streamlink
 ADD "https://github.com/streamlink/streamlink/releases/download/${streamlinkVersion}/streamlink-${streamlinkVersion}.tar.gz" /opt/
-RUN apt-get update && apt-get install gosu
+RUN apt-get update && apt-get install gosu jq
 RUN tar -xzf "/opt/streamlink-${streamlinkVersion}.tar.gz" -C /opt/ && \
 	rm "/opt/streamlink-${streamlinkVersion}.tar.gz" && \
 	cd "/opt/streamlink-${streamlinkVersion}/" && \
@@ -15,13 +15,13 @@ RUN tar -xzf "/opt/streamlink-${streamlinkVersion}.tar.gz" -C /opt/ && \
 
 # Twitch CLI
 ADD "https://github.com/twitchdev/twitch-cli/releases/download/v${twitchVersion}/twitch-cli_${twitchVersion}_Linux_x86_64.tar.gz" /opt/
-
 RUN mkdir "/opt/twitch" && \
   tar -xzf "/opt/twitch-cli_${twitchVersion}_Linux_x86_64.tar.gz" -C /opt/twitch && \
 	rm "/opt/twitch-cli_${twitchVersion}_Linux_x86_64.tar.gz" && \
 	cd "/opt/twitch/" && \
 	mv "/opt/twitch/twitch" "/usr/local/bin/" && \
   rm -r "/opt/twitch/"
+RUN mkdir "/.config"
 
 RUN mkdir /home/download
 RUN mkdir /home/script
