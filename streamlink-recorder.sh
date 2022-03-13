@@ -14,7 +14,7 @@ while [[ true ]]; do
     stream_status=$(twitch api get /streams -q "user_login=${streamName}" 2>&1)
   fi
 
-  stream_status=$(echo "$stream_status" | jq '.data[0].type')
+  stream_status=$(echo "$stream_status" | jq --raw-output '.data[0].type')
   if [[ "$stream_status" == "live" ]]; then
     echo "$streamName stream is: $stream_status"
     streamlink \
