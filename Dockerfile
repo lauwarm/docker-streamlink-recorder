@@ -22,6 +22,7 @@ RUN mkdir "/opt/twitch" && \
 	mv "/opt/twitch/twitch" "/usr/local/bin/" && \
   rm -r "/opt/twitch/"
 RUN mkdir -p "/.config/twitch-cli"
+RUN chown 1000:1000 "/.config/twitch-cli"
 
 RUN mkdir /home/download
 RUN mkdir /home/script
