@@ -6,7 +6,7 @@ ENV twitchVersion=1.1.5
 
 # Streamlink
 ADD "https://github.com/streamlink/streamlink/releases/download/${streamlinkVersion}/streamlink-${streamlinkVersion}.tar.gz" /opt/
-RUN apt-get update && apt-get install gosu jq
+RUN apt-get update && apt-get -y install gosu jq
 RUN tar -xzf "/opt/streamlink-${streamlinkVersion}.tar.gz" -C /opt/ && \
 	rm "/opt/streamlink-${streamlinkVersion}.tar.gz" && \
 	cd "/opt/streamlink-${streamlinkVersion}/" && \
