@@ -20,7 +20,7 @@ RUN mkdir "/opt/twitch" && \
   tar -xzf "/opt/twitch-cli_${twitchVersion}_Linux_x86_64.tar.gz" -C /opt/twitch && \
 	rm "/opt/twitch-cli_${twitchVersion}_Linux_x86_64.tar.gz" && \
 	cd "/opt/twitch/" && \
-	mv "/opt/twitch/twitch" "/usr/local/bin/"
+	mv "/opt/twitch/twitch" "/usr/local/bin/" && \
   rm -r "/opt/twitch/"
 
 RUN mkdir /home/download
