@@ -3,6 +3,7 @@
 echo "Saving config file."
 twitch configure --client-id "$clientID" --client-secret "$clientSecret"
 
+echo "Waiting for stream to go live."
 while [[ true ]]; do
 
   stream_status=$(twitch api get /streams -q "user_login=${streamName}" 2>&1)
@@ -22,8 +23,8 @@ while [[ true ]]; do
       $streamOptions \
       "$streamLink" \
       "$streamQuality"
-  else
-    echo "$streamName stream isn't live: $stream_status"
+  # else
+  #   echo "$streamName stream isn't live: $stream_status"
   fi
 	sleep 60s
 done
