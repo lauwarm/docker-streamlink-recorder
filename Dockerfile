@@ -1,15 +1,15 @@
 FROM python:3.9.12-bullseye
 LABEL maintainer="lauwarm@mailbox.org"
 
-ENV streamlinkVersion=3.2.0
+ENV streamlinkVersion=4.0.0
 
-ADD https://github.com/streamlink/streamlink/releases/download/${streamlinkVersion}/streamlink-${streamlinkVersion}.tar.gz /opt/
+ADD https://github.com/streamlink/streamlink/archive/refs/tags/${streamlinkVersion}.tar.gz /opt/
 
 RUN apt-get update && apt-get install gosu
 
-RUN tar -xzf /opt/streamlink-${streamlinkVersion}.tar.gz -C /opt/ && \
-	rm /opt/streamlink-${streamlinkVersion}.tar.gz && \
-	cd /opt/streamlink-${streamlinkVersion}/ && \
+RUN tar -xzf /opt/${streamlinkVersion}.tar.gz -C /opt/ && \
+	rm /opt/${streamlinkVersion}.tar.gz && \
+	cd /opt/${streamlinkVersion}/ && \
 	python setup.py install
 
 RUN mkdir /home/download
