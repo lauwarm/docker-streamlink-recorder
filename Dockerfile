@@ -7,9 +7,9 @@ ADD https://github.com/streamlink/streamlink/archive/refs/tags/${streamlinkVersi
 
 RUN apt-get update && apt-get install gosu
 
-RUN tar -xzf /opt/${streamlinkVersion}.tar.gz -C /opt/ && \
-	rm /opt/${streamlinkVersion}.tar.gz && \
-	cd /opt/${streamlinkVersion}/ && \
+RUN tar -xzf /opt/streamlink-${streamlinkVersion}.tar.gz -C /opt/ && \
+	rm /opt/streamlink-${streamlinkVersion}.tar.gz && \
+	cd /opt/streamlink-${streamlinkVersion}/ && \
 	python setup.py install
 
 RUN mkdir /home/download
