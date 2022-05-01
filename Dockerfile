@@ -1,7 +1,7 @@
 FROM python:3.9.12-bullseye
 LABEL maintainer="lauwarm@mailbox.org"
 
-ENV streamlinkVersion=4.0.0
+ENV streamlinkVersion=3.2.0
 
 ADD https://github.com/streamlink/streamlink/releases/download/${streamlinkVersion}/streamlink-${streamlinkVersion}.tar.gz /opt/
 
