@@ -8,7 +8,7 @@ while [[ true ]]; do
 
   stream_status=$(twitch api get /streams -q "user_login=${streamName}" 2>&1)
   echo "before token if, stream_status: $stream_status"
-  if [[ "$stream_status" =~ "twitch token" ]]; then
+  if [[ "$stream_status" =~ "twitch token" || "$stream_status" =~  "Invalid OAuth token" ]]; then
     echo "Token missing, refreshing it.";
     twitch token
     # Try again, now that we have the token, it should work.
