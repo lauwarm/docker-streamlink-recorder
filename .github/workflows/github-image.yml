@@ -1,9 +1,4 @@
-name: Docker
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+name: Github Registry
 
 on:
   push:
@@ -11,9 +6,7 @@ on:
       - '**'
 
 env:
-  # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
-  # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
 
 
@@ -31,14 +24,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      # Install the cosign tool except on PR
-      # https://github.com/sigstore/cosign-installer
-      - name: Install cosign
-        if: github.event_name != 'pull_request'
-        uses: sigstore/cosign-installer@d6a3abf1bdea83574e28d40543793018b6035605
-        with:
-          cosign-release: 'v1.7.1'
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -74,7 +59,10 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          
+      
+      - name: Install cosign
+        uses: sigstore/cosign-installer@7e0881f8fe90b25e305bbf0309761e9314607e25        
+
       - name: Write signing key to disk
         run: 'echo "$KEY" > cosign.key'
         shell: bash
@@ -82,8 +70,9 @@ jobs:
           KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
 
       - name: Sign the published Docker image
-        if: ${{ github.event_name != 'pull_request' }}
-        run: cosign sign --key cosign.key ${{ steps.meta.outputs.tags }}@${{ steps.build-and-push.outputs.digest }}
+#        if: ${{ github.event_name != 'pull_request' }}
         env:
-          COSIGN_EXPERIMENTAL: "true"
+#          COSIGN_EXPERIMENTAL: "true"
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+        run: cosign sign --key cosign.key ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ github.run_id }}
+
