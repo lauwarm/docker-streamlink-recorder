@@ -42,8 +42,6 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      # Build and push Docker image with Buildx (don't push on PR)
-      # https://github.com/docker/build-push-action
       - name: Build and push Docker image
         id: build-and-push
         uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
@@ -53,19 +51,18 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
       
-      - name: Install cosign
-        uses: sigstore/cosign-installer@v2.4.0        
+#      - name: Install cosign
+#        uses: sigstore/cosign-installer@v2.4.0        
 
-      - name: Write signing key to disk
-        run: 'echo "$KEY" > cosign.key'
-        shell: bash
-        env:
-          KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
+#      - name: Write signing key to disk
+#        run: 'echo "$KEY" > cosign.key'
+#        shell: bash
+#        env:
+#          KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
 
-      - name: Sign the published Docker image
+#      - name: Sign the published Docker image
 #        if: ${{ github.event_name != 'pull_request' }}
-        env:
+#        env:
 #          COSIGN_EXPERIMENTAL: "true"
-          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
-        run: cosign sign --key cosign.key ${{ steps.meta.outputs.tags }}
-
+#          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+#        run: cosign sign --key cosign.key ${{ steps.meta.outputs.tags }}
