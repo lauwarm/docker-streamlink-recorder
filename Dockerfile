@@ -2,7 +2,7 @@ FROM python:3.9.12-bullseye
 LABEL maintainer="lauwarm@mailbox.org"
 
 #ENV streamlinkVersion=4.0.0
-ENV streamlinkCommit=ea7a243a11b33b6bbe4ae5163e94a8dffd4efd63
+ENV streamlinkCommit=b7a8da256f53c77e681b4253688e50e2191f64af
 ENV PATH "${HOME}/.local/bin:${PATH}"
 
 #ADD https://github.com/streamlink/streamlink/archive/refs/tags/${streamlinkVersion}.tar.gz /opt/
