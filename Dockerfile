@@ -1,8 +1,8 @@
-FROM python:3.9.10-slim-bullseye
+FROM python:3.9.14-slim-bullseye
 LABEL maintainer="Adriel"
 
-ENV streamlinkVersion=3.2.0
-ENV twitchVersion=1.1.5
+ENV streamlinkVersion=5.0.1
+ENV twitchVersion=1.1.8
 
 # Streamlink
 ADD "https://github.com/streamlink/streamlink/releases/download/${streamlinkVersion}/streamlink-${streamlinkVersion}.tar.gz" /opt/
