@@ -1,4 +1,4 @@
-FROM python:3.10.7-bullseye
+FROM python:3.12.0a4-bullseye
 LABEL maintainer="lauwarm@mailbox.org"
 
 ENV streamlinkCommit=b911bc9635a36009706658d1d60ce9cd506b0f8c
