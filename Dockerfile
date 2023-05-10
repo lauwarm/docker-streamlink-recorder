@@ -1,7 +1,7 @@
 FROM python:3.12.0a4-bullseye
 LABEL maintainer="lauwarm@mailbox.org"
 
-ENV streamlinkCommit=25421c8d943381471ac0c528fffb79be6907df7d
+ENV streamlinkCommit=15fbab1b45e8bbe432b385c088cea2acfb8812f1
 ENV PATH "${HOME}/.local/bin:${PATH}"
 
 RUN apt-get update && apt-get install gosu && apt-get install python3-pip -y
