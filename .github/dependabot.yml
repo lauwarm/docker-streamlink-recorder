@@ -11,9 +11,13 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    reviewers:
+      - "lauwarm"
   - package-ecosystem: "docker"
     directory: "/"
     registries:
       - dockerhub
     schedule:
       interval: "daily"
+    reviewers:
+      - "lauwarm"
