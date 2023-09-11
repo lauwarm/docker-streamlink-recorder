@@ -12,7 +12,7 @@ updates:
     schedule:
       interval: "daily"
     reviewers:
-      - "lauwarm"1
+      - "lauwarm"
     assignees:
       - "lauwarm"
   - package-ecosystem: "docker"
