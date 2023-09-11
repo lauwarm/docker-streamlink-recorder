@@ -12,6 +12,8 @@ updates:
     schedule:
       interval: "daily"
     reviewers:
+      - "lauwarm"1
+    assignees:
       - "lauwarm"
   - package-ecosystem: "docker"
     directory: "/"
@@ -20,4 +22,6 @@ updates:
     schedule:
       interval: "daily"
     reviewers:
+      - "lauwarm"
+    assignees:
       - "lauwarm"
