@@ -1,8 +1,8 @@
-FROM python:3.12.0rc1-bullseye
+FROM python:3.12
 LABEL maintainer="lauwarm@mailbox.org"
 
 ENV streamlinkCommit=5f64f2ee3a4d436cd6686efb2353109fd4da4b70
-#ENV streamlinkVersion=6.0.1
+#ENV streamlinkVersion=6.2.1
 #ENV PATH "${HOME}/.local/bin:${PATH}"
 
 #ADD https://github.com/streamlink/streamlink/releases/download/${streamlinkVersion}/streamlink-${streamlinkVersion}.tar.gz /opt/
