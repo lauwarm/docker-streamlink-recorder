@@ -3,8 +3,7 @@ LABEL maintainer="lauwarm@mailbox.org"
 
 ENV streamlinkCommit=0dda8ccfcbaa79035d0c60a86dac2faae5089901
 #ENV streamlinkVersion=6.4.1
-
-bin:${PATH}"
+#ENV PATH "${HOME}/.local/bin:${PATH}"
 
 #ADD https://github.com/streamlink/streamlink/releases/download/${streamlinkVersion}/streamlink-${streamlinkVersion}.tar.gz /opt/
 
