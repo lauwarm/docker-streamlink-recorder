@@ -1,9 +1,10 @@
 FROM python:3.12
 LABEL maintainer="lauwarm@mailbox.org"
 
-ENV streamlinkCommit=0048c67772a8030a953e784ddc91ccf360ef42eb
-#ENV streamlinkVersion=6.4.0
-#ENV PATH "${HOME}/.local/bin:${PATH}"
+ENV streamlinkCommit=0dda8ccfcbaa79035d0c60a86dac2faae5089901
+#ENV streamlinkVersion=6.4.1
+
+bin:${PATH}"
 
 #ADD https://github.com/streamlink/streamlink/releases/download/${streamlinkVersion}/streamlink-${streamlinkVersion}.tar.gz /opt/
 
