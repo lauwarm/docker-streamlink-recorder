@@ -1,4 +1,4 @@
-FROM python:3.12
+FROM python:3.12.2
 LABEL maintainer="lauwarm@mailbox.org"
 
 ENV streamlinkCommit=28c03834fcdd39ed100d671d790911a221fe0cc5
