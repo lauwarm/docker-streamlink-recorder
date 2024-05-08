@@ -17,7 +17,7 @@ docker run -v /path/to/vod/folder/:/home/download -e streamLink='' -e streamQual
 Example:
 
 ```bash
-docker run -v /home/:/home/download -e streamLink='twitch.tv/twitch' -e streamQuality='best' -e streamName='twitch' -e streamOptions='--twitch-disable-reruns' -e uid='1001' -e gid='1001' lauwarm/streamlink-recorder
+docker run -v /home/:/home/download -e streamLink='twitch.tv/twitch' -e streamQuality='best' -e streamName='twitch' -e streamOptions='--twitch-api-header=Authorization=OAuth abcdefg123456;--twitch-disable-reruns' -e uid='1001' -e gid='1001' lauwarm/streamlink-recorder
 ```
 
 ## Notes
@@ -34,7 +34,7 @@ docker run -v /home/:/home/download -e streamLink='twitch.tv/twitch' -e streamQu
 
 `streamName` - name for the stream.
 
-`streamOptions` - streamlink flags (--twitch-disable-reruns, separated by space, see [Plugins](https://streamlink.github.io/plugins.html))
+`streamOptions` - streamlink flags (--twitch-disable-reruns, separated by ```;```, see [Plugins](https://streamlink.github.io/plugins.html))
 
 `uid` - USER ID, map to your desired User ID (fallback to 9001)
 
