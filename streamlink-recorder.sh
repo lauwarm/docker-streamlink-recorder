@@ -7,10 +7,10 @@
 #echo "Argument 3: $streamQuality"
 #echo "Argument 4: $streamName"
 
-IFS=';' read -r -a args <<< "$streamOptions"
+IFS=';' read -r -a args <<< "$streamPluginOptions"
 
 while [ true ]; do
 	Date=$(date +%Y%m%d-%H%M%S)
-	streamlink "${args[@]}" "$streamLink" "$streamQuality" -o /home/download/"$streamName"-"$Date".mkv
+	streamlink "$streamCliOptions" "${args[@]}" "$streamLink" "$streamQuality" -o /home/download/"$streamName"-"$Date".mkv
 	sleep 60s
 done
