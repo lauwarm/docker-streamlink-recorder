@@ -1,7 +1,7 @@
 FROM python:3.12.2
 LABEL maintainer="lauwarm@mailbox.org"
 
-ENV streamlinkCommit=00b8951278be7e5fd326a44792445aaa2fe29655
+ENV streamlinkCommit=a25de3b26d0f35103811e104c82e8b9eeadb4555
 
 #ENV streamlinkVersion=6.7.4
 #ENV PATH "${HOME}/.local/bin:${PATH}"
