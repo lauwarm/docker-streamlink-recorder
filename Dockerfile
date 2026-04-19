@@ -1,4 +1,4 @@
-FROM python:3.12.2
+FROM python:3.14.4-trixie
 LABEL maintainer="lauwarm@mailbox.org"
 
 ENV streamlinkCommit=a309e6e9cf621655779c7283dff51686f5d2a22b
