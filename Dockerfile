@@ -1,7 +1,7 @@
 FROM python:3.14.4-trixie
 LABEL maintainer="lauwarm@mailbox.org"
 
-ENV streamlinkCommit=d3828a5e7b7025856d800c231b222ea64004dc37
+ENV streamlinkCommit=a309e6e9cf621655779c7283dff51686f5d2a22b
 
 RUN apt-get update && apt-get install gosu -y && apt-get install python3-pip -y && apt-get install git ca-certificates && apt-get install ffmpeg -y
 
