@@ -1,25 +1,12 @@
-FROM python:3.12.2
+FROM python:3.14.4-trixie
 LABEL maintainer="lauwarm@mailbox.org"
 
-ENV streamlinkCommit=890f5b44f9c0ccd99d5acbb17e7a63cb6d4bed56
+ENV streamlinkCommit=a309e6e9cf621655779c7283dff51686f5d2a22b
 
-#ENV streamlinkVersion=6.7.4
-#ENV PATH "${HOME}/.local/bin:${PATH}"
-
-#ADD https://github.com/streamlink/streamlink/releases/download/${streamlinkVersion}/streamlink-${streamlinkVersion}.tar.gz /opt/
-
-#RUN apt-get update && apt-get install gosu
-
-#RUN pip3 install versioningit
-
-#RUN tar -xzf /opt/streamlink-${streamlinkVersion}.tar.gz -C /opt/ && \
-#	rm /opt/streamlink-${streamlinkVersion}.tar.gz && \
-#	cd /opt/streamlink-${streamlinkVersion}/ && \
-#	python3 setup.py install
-
-RUN apt-get update && apt-get install gosu -y && apt-get install python3-pip -y && apt-get install git ca-certificates -y
+RUN apt-get update && apt-get upgrade && apt-get install gosu -y && apt-get install python3-pip -y && apt-get install git ca-certificates && apt-get install ffmpeg -y
 
 RUN pip3 install --upgrade git+https://github.com/streamlink/streamlink.git@${streamlinkCommit}
+RUN pip install cloudscraper
 
 RUN  echo 'export PATH="${HOME}/.local/bin:${PATH}"'
 
@@ -27,13 +14,13 @@ RUN mkdir /home/download
 RUN mkdir /home/script
 RUN mkdir /home/plugins
 
-#RUN git clone https://github.com/Damianonymous/streamlink-plugins.git
-#RUN cp /streamlink-plugins/*.py /home/plugins/
+ADD https://gist.githubusercontent.com/lauwarm/cb25f85f45b1c210cd51f6bedb2b2f57/raw/77c245bd2fbc921d5f08804b1cfc20c3d28cfb7f/chaturbate.py /home/plugins/
 
 COPY ./streamlink-recorder.sh /home/script/
 COPY ./entrypoint.sh /home/script
 
 RUN ["chmod", "+x", "/home/script/entrypoint.sh"]
+RUN chmod 644 /home/plugins/chaturbate.py
 
 ENTRYPOINT [ "/home/script/entrypoint.sh" ]
 
